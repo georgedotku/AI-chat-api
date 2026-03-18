@@ -10,7 +10,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // Register user with StreamChat
 app.post('/register', async (req: Request, res: Response): Promise<any> => {
-    res.send('Test');
+    const { name, email } = req.body;
+    if (!name || !email) {
+        return res.status(400).json({ error: 'Name and email are required' });
+    }
+    res.status(200).json({ message: 'successfully registered' });
 });
 const PORT = process.env.PORT || 5000;
 
