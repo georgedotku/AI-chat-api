@@ -21,6 +21,9 @@ app.post('/register', async (req: Request, res: Response): Promise<any> => {
     try {
         const userId = email.replace(/[^a-zA-Z0-9_-]/g, '_');
         console.log(userId);
+        // Check if user already exists
+        const existingUser = await streamClient.queryUsers({ id: userId });
+        console.log(existingUser);
         res.status(200).json({ message: 'Success' })
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
