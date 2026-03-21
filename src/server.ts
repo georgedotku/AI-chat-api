@@ -34,7 +34,7 @@ app.post('/register', async (req: Request, res: Response): Promise<any> => {
                 role: 'user',
             });
         }
-        res.status(200).json({ message: 'Success' })
+        res.status(200).json({ userId, name, email });
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }
